@@ -18,24 +18,27 @@ function App() {
   const [zoom, setZoom] = useState(11);
 
   useEffect(() => {
-    // Initialize map only once
     if (map.current) return;
 
     map.current = new mapboxgl.Map({
       container: mapContainer.current,
-      style: 'mapbox://styles/mapbox/dark-v11', // Dark mode map (looks slick for EV apps)
+      style: 'mapbox://styles/mapbox/dark-v11',
       center: [lng, lat],
-      visibility: "visible",
       zoom: zoom
     });
 
-    // Update the state when the user drags the map around
+    map.current.on('load', () => {
+      setTimeout(() => {
+        map.current.resize();
+      }, 100);
+    });
+
     map.current.on('move', () => {
       setLng(map.current.getCenter().lng.toFixed(4));
       setLat(map.current.getCenter().lat.toFixed(4));
       setZoom(map.current.getZoom().toFixed(2));
     });
-  }, [lng, lat, zoom]);
+  },[lng, lat, zoom]);
 
   // --- Placeholder functions for your Node Backend ---
   const handleFetchCarData = async () => {
@@ -68,7 +71,11 @@ function App() {
       </div>
 
       {/* The Map */}
-      <div ref={mapContainer} className="map-container" />
+      <div
+        ref={mapContainer}
+        className="map-container"
+        style={{ height: '100vh', flexGrow: 1 }}
+      />
     </div>
   );
 }
