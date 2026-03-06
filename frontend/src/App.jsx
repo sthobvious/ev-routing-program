@@ -71,6 +71,14 @@ function App() {
 
           <div className="controls">
 
+            <div class="topnav">
+              <input class="start searchbar" type="text" placeholder="My position"></input>
+            </div>
+
+            <div class="topnav">
+              <input class="dest searchbar" type="text" placeholder="Where do you want to end up?"></input>
+            </div>
+
             <button onClick={handleFetchCarData} className="btn foo-btn">
               FOO
             </button>
