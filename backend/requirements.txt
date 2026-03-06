@@ -1,3 +1,2 @@
 fastapi
-
-#stuff that gets installed here
+pydantic
