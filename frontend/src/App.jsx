@@ -72,7 +72,7 @@ function App() {
           <div className="controls">
 
             <div class="topnav">
-              <input class="start searchbar" type="text" placeholder="My position"></input>
+              <input class="start searchbar" type="text" placeholder="Your Location"></input>
             </div>
 
             <div class="topnav">
